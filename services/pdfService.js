@@ -217,46 +217,31 @@ async function appendDocument(targetDoc, filePath, mimeType) {
   }
 }
 
-// ─── Upload file registry ─────────────────────────────────────────────────────
-// Maps logical document keys to their upload subdirectory paths
-const UPLOAD_SUBPATHS = {
-  custAadhaarFront: 'customer/aadhaar-front',
-  custAadhaarBack:  'customer/aadhaar-back',
-  custPAN:          'customer/pan',
-  guarAadhaarFront: 'guarantor/aadhaar-front',
-  guarAadhaarBack:  'guarantor/aadhaar-back',
-  guarPAN:          'guarantor/pan',
-  coAadhaarFront:   'co-borrower/aadhaar-front',
-  coAadhaarBack:    'co-borrower/aadhaar-back',
-  coPAN:            'co-borrower/pan'
-};
-
-/**
- * Find the most recently uploaded file in a given uploads subdirectory.
- * Returns { filePath, mimeType } or null.
- */
-function findLatestUpload(subPath) {
-  const dir = path.join(__dirname, '../uploads', subPath);
-  if (!fs.existsSync(dir)) return null;
-  const files = fs.readdirSync(dir)
-    .filter(f => /\.(jpg|jpeg|png|pdf)$/i.test(f))
-    .map(f => ({ name: f, mtime: fs.statSync(path.join(dir, f)).mtime.getTime() }))
-    .sort((a, b) => b.mtime - a.mtime);
-  if (files.length === 0) return null;
-  const file = files[0].name;
-  const ext  = path.extname(file).toLowerCase();
-  const mimeMap = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.pdf': 'application/pdf' };
-  return { filePath: path.join(dir, file), mimeType: mimeMap[ext] || 'image/jpeg' };
-}
+// ─── Document field name → logical key mapping ───────────────────────────────
+// Maps the multipart field names (as sent by the browser) to logical doc keys.
+// Used to iterate in document order when appending pages to the PDF.
+const DOC_ORDER = [
+  'customer/aadhaar-front',
+  'customer/aadhaar-back',
+  'customer/pan',
+  'guarantor/aadhaar-front',
+  'guarantor/aadhaar-back',
+  'guarantor/pan',
+  'co-borrower/aadhaar-front',
+  'co-borrower/aadhaar-back',
+  'co-borrower/pan'
+];
 
 // ─── Main export ──────────────────────────────────────────────────────────────
 /**
- * generatePDF(data) → Buffer
+ * generatePDF(data, reqFiles) → { buffer, filename }
  *
- * @param {object} data - Form data from frontend
- * @returns {Promise<Buffer>} - Final filled PDF as buffer
+ * @param {object} data     - Form data from the current HTTP request
+ * @param {object} reqFiles - req.files from multer (THIS request only, never cached)
+ *                            Format: { 'customer/aadhaar-front': [{ path, mimetype }], ... }
+ * @returns {Promise<{buffer: Buffer, filename: string}>}
  */
-async function generatePDF(data) {
+async function generatePDF(data, reqFiles = {}) {
   // Load template
   const templateBytes = fs.readFileSync(TEMPLATE);
   const pdfDoc = await PDFDocument.load(templateBytes);
@@ -355,24 +340,14 @@ async function generatePDF(data) {
   }
 
   // ── UPLOADED DOCUMENTS → append pages in order ───────────────────────────
-  // Order: custAadhaarFront → custAadhaarBack → custPAN → guar* → co*
-  const docOrder = [
-    'custAadhaarFront',
-    'custAadhaarBack',
-    'custPAN',
-    'guarAadhaarFront',
-    'guarAadhaarBack',
-    'guarPAN',
-    'coAadhaarFront',
-    'coAadhaarBack',
-    'coPAN'
-  ];
-
-  for (const key of docOrder) {
-    const upload = findLatestUpload(UPLOAD_SUBPATHS[key]);
-    if (upload) {
-      console.log(`  [Doc] Appending: ${key} → ${path.basename(upload.filePath)}`);
-      await appendDocument(pdfDoc, upload.filePath, upload.mimeType);
+  // ISOLATION: Only files from THIS request (reqFiles) are used.
+  // Never scan uploads/ directory. Never reuse previous request files.
+  for (const fieldName of DOC_ORDER) {
+    const fileArr = reqFiles[fieldName];
+    if (fileArr && fileArr[0] && fileArr[0].path) {
+      const f = fileArr[0];
+      console.log(`  [Doc] Appending: ${fieldName} → ${path.basename(f.path)}`);
+      await appendDocument(pdfDoc, f.path, f.mimetype);
     }
   }
 

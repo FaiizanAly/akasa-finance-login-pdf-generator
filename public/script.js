@@ -279,45 +279,42 @@ form.addEventListener('submit', async (e) => {
   updateSteps(2);
 
   try {
-    // Step 1: Upload documents (if any files are attached)
-    const hasFiles = Object.values(uploadedFiles).some(f => f !== null);
-    if (hasFiles) {
-      const uploadFD = new FormData();
-      const fileKeyMap = {
-        custAadhaarFront:  'customer/aadhaar-front',
-        custAadhaarBack:   'customer/aadhaar-back',
-        custPAN:           'customer/pan',
-        guarAadhaarFront:  'guarantor/aadhaar-front',
-        guarAadhaarBack:   'guarantor/aadhaar-back',
-        guarPAN:           'guarantor/pan',
-        coAadhaarFront:    'co-borrower/aadhaar-front',
-        coAadhaarBack:     'co-borrower/aadhaar-back',
-        coPAN:             'co-borrower/pan'
-      };
-      Object.entries(uploadedFiles).forEach(([key, file]) => {
-        if (file) uploadFD.append(fileKeyMap[key] || key, file);
-      });
-      // Also send customer name for folder naming
-      uploadFD.append('customerName', formData.customerName || 'unknown');
+    // ── Single FormData request: form fields + files together ──────────────
+    // This is the ONLY call — no separate upload step.
+    // The server stores files in a unique per-request temp dir and deletes
+    // them after sending the PDF. No cross-user file contamination is possible.
+    const fd = new FormData();
 
-      const upResp = await fetch('/api/upload-documents', {
-        method: 'POST',
-        body: uploadFD
-      });
-      if (!upResp.ok) {
-        let upErr = 'Document upload failed';
-        try { const j = await upResp.json(); upErr = j.error || upErr; } catch(_) {}
-        throw new Error(upErr);
+    // Append all form text fields
+    Object.entries(formData).forEach(([k, v]) => {
+      if (v !== undefined && v !== null && v !== '') fd.append(k, String(v));
+    });
+
+    // Append only files uploaded IN THIS SESSION (from uploadedFiles state)
+    const fileKeyMap = {
+      custAadhaarFront: 'customer/aadhaar-front',
+      custAadhaarBack:  'customer/aadhaar-back',
+      custPAN:          'customer/pan',
+      guarAadhaarFront: 'guarantor/aadhaar-front',
+      guarAadhaarBack:  'guarantor/aadhaar-back',
+      guarPAN:          'guarantor/pan',
+      coAadhaarFront:   'co-borrower/aadhaar-front',
+      coAadhaarBack:    'co-borrower/aadhaar-back',
+      coPAN:            'co-borrower/pan'
+    };
+    let fileCount = 0;
+    Object.entries(uploadedFiles).forEach(([key, file]) => {
+      if (file instanceof File) {
+        fd.append(fileKeyMap[key], file, file.name);
+        fileCount++;
       }
-      const upResult = await upResp.json();
-      console.log('Documents uploaded:', upResult.savedFiles?.length, 'files');
-    }
+    });
+    console.log(`[Submit] Sending ${fileCount} file(s) + form data to /api/generate-pdf`);
 
-    // Step 2: Generate PDF
+    // Single fetch — Content-Type set automatically by browser for FormData
     const response = await fetch('/api/generate-pdf', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: fd
     });
 
     if (!response.ok) {
@@ -793,11 +790,16 @@ function initDropZones() {
 // Initialise drop-zones on DOM ready
 initDropZones();
 
+// ── Clear all uploads on page load (privacy: fresh state every visit) ────────
+window.addEventListener('load', () => {
+  document.querySelectorAll('.drop-zone').forEach(dz => clearFile(dz));
+  Object.keys(uploadedFiles).forEach(k => { uploadedFiles[k] = null; });
+});
+
 // Also clear uploads when form is reset
 resetBtn.addEventListener('click', () => {
-  // (The confirm dialog is already handled in the existing reset handler above;
-  //  this listener fires after the existing one resets the form.)
   document.querySelectorAll('.drop-zone').forEach(dz => clearFile(dz));
-}, true); // capture phase so it runs even if existing handler already fired
+  Object.keys(uploadedFiles).forEach(k => { uploadedFiles[k] = null; });
+}, true);
 
 console.log('%cUpload module ready.', 'color:#14b8a6;font-size:11px');
