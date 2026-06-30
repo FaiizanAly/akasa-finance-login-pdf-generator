@@ -499,6 +499,7 @@ updateSteps(1);
 
 const ageDisplayEl = document.getElementById('customerAge');
 const ageWarningEl = document.getElementById('age-warning');
+const MIN_AGE = 21; // customers must be at least 21 years old
 const MAX_AGE = 59; // customers must be 59 years or younger
 
 /**
@@ -532,17 +533,27 @@ function applyAge(age) {
 
   ageDisplayEl.value = `${age} Years`;
 
-  if (age >= 60) {
-    // INELIGIBLE
+  if (age < MIN_AGE) {
+    // INELIGIBLE — too young
     ageDisplayEl.classList.remove('eligible');
     ageDisplayEl.classList.add('ineligible');
+    ageWarningEl.textContent = '❌ Customer is not eligible for finance because the age is below 21 years.';
+    ageWarningEl.style.display = 'block';
+    generateBtn.disabled = true;
+    generateBtn.title = 'Customer is not eligible. Minimum allowed age is 21 years.';
+  } else if (age >= 60) {
+    // INELIGIBLE — too old
+    ageDisplayEl.classList.remove('eligible');
+    ageDisplayEl.classList.add('ineligible');
+    ageWarningEl.textContent = '❌ Customer is not eligible for finance because the age is 60 years or above.';
     ageWarningEl.style.display = 'block';
     generateBtn.disabled = true;
     generateBtn.title = 'Customer is not eligible. Maximum allowed age is 59 years.';
   } else {
-    // ELIGIBLE
+    // ELIGIBLE (21–59 years)
     ageDisplayEl.classList.remove('ineligible');
     ageDisplayEl.classList.add('eligible');
+    ageWarningEl.textContent = '';
     ageWarningEl.style.display = 'none';
     generateBtn.disabled = false;
     generateBtn.title = '';
@@ -561,7 +572,11 @@ if (dobEl) {
 // Also block form submission explicitly if ineligible (belt-and-suspenders)
 form.addEventListener('submit', (e) => {
   const age = calcAge(dobEl ? dobEl.value : '');
-  if (age >= 60) {
+  if (age < MIN_AGE) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    showToast('Customer is not eligible. Minimum allowed age is 21 years.', 'error');
+  } else if (age >= 60) {
     e.preventDefault();
     e.stopImmediatePropagation();
     showToast('Customer is not eligible. Maximum allowed age is 59 years.', 'error');
