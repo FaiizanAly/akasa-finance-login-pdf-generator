@@ -1,4 +1,4 @@
-﻿# ⚡ E-Rikshaw Finance PDF Generator
+﻿﻿# ⚡ Akasa Electric Scooter & E-Rikshaw Finance PDF Generator
 
 > A production-ready web application to auto-fill E-Rikshaw loan application forms — generating a professionally formatted, downloadable PDF instantly.
 
@@ -70,7 +70,7 @@ akasa-file/
 
 `ash
 # Clone the repository
-git clone https://github.com/your-username/e-rikshaw-finance-pdf-generator.git
+git clone https://github.com/faiizanaly/e-rikshaw-finance-pdf-generator.git
 
 # Navigate to project folder
 cd e-rikshaw-finance-pdf-generator
@@ -146,4 +146,4 @@ ode server.js
 
 ---
 
-> Made with love for E-Rikshaw finance dealers across India
+> Made with love for Electric Scooter & E-Rikshaw finance dealers across India

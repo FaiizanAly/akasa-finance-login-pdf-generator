@@ -31,8 +31,8 @@ app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Serve index.html for all other routes (SPA support)
-app.get('/{*path}', (req, res) => {
+// Serve index.html for all other routes (SPA support) — Express 5 syntax
+app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 

@@ -5,10 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "echo 'No build step needed'",
     "dev": "node server.js"
   },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "keywords": ["e-rikshaw", "finance", "pdf", "form"],
-  "author": "Akasa Finance",
+  "author": "Faizan Ali",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
