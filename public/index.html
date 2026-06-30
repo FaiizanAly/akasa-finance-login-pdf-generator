@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electric Scooter & E-Rikshaw Finance — PDF Generator | Akasa Finance</title>
+  <meta name="description" content="Generate professional E-Rikshaw finance application PDF forms instantly. Fill customer, guarantor, vehicle and battery details." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#g1)" />
+            <path d="M12 26 L20 12 L28 26 Z" fill="white" opacity="0.9"/>
+            <circle cx="20" cy="26" r="4" fill="white"/>
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="40" y2="40">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Akasa Finance</span>
+          <span class="brand-tagline">Electric Scooter & E-Rikshaw Loan Management</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <span class="live-badge">
+          <span class="live-dot"></span>
+          Live System
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════ HERO TITLE ══════════════ -->
+  <section class="page-hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Electric Scooter & E-Rikshaw Finance<br/><span class="gradient-text">Login Form Generator</span></h1>
+      <p class="hero-sub">Fill the application form below and generate a professional finance PDF instantly. The PDF preserves the original template format exactly.</p>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="steps-bar">
+      <div class="step active" id="step1">
+        <div class="step-num">1</div>
+        <span>Fill Form</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step2">
+        <div class="step-num">2</div>
+        <span>Generate PDF</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step3">
+        <div class="step-num">3</div>
+        <span>Download</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MAIN FORM ══════════════ -->
+  <main class="form-container">
+    <form id="financeForm" novalidate>
+
+      <!-- ── SECTION: Customer Details ──────────────────────────────── -->
+      <section class="form-section" data-section="customer">
+        <div class="section-header">
+          <div class="section-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="section-title">Customer Details</h2>
+            <p class="section-desc">Primary applicant information</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- Customer Name -->
+          <div class="field-group col-6" id="fg-customerName">
+            <label for="customerName">Customer Name <span class="req">*</span></label>
+            <input type="text" id="customerName" name="customerName"
+              placeholder="Enter full name" autocomplete="name" />
+            <span class="field-error" id="err-customerName"></span>
+          </div>
+
+          <!-- Phone -->
+          <div class="field-group col-6" id="fg-customerPhone">
+            <label for="customerPhone">Phone Number <span class="req">*</span></label>
+            <div class="input-prefix">
+              <span class="prefix">+91</span>
+              <input type="tel" id="customerPhone" name="customerPhone"
+                placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" />
+            </div>
+            <span class="field-error" id="err-customerPhone"></span>
+          </div>
+
+          <!-- Date of Birth -->
+          <div class="field-group col-4" id="fg-customerDOB">
+            <label for="customerDOB">Date of Birth <span class="req">*</span></label>
+            <input type="date" id="customerDOB" name="customerDOB" />
+            <span class="field-error" id="err-customerDOB"></span>
+          </div>
+
+          <!-- Customer Age (auto-calculated, read-only) -->
+          <div class="field-group col-4" id="fg-customerAge">
+            <label for="customerAge">Customer Age</label>
+            <input type="text" id="customerAge" name="customerAge"
+              placeholder="Auto-calculated" readonly
+              class="age-display" autocomplete="off" />
+            <div class="age-warning" id="age-warning" style="display:none;">
+              ❌ Customer is not eligible for finance because the age is 60 years or above.
+            </div>
+          </div>
+
+          <!-- Father Name -->
+          <div class="field-group col-8" id="fg-customerFatherName">
+            <label for="customerFatherName">Father's Name</label>
+            <input type="text" id="customerFatherName" name="customerFatherName"
+              placeholder="Father's full name" />
+          </div>
+
+          <!-- Address Proof -->
+          <div class="field-group col-4" id="fg-customerAddressProof">
+            <label>Address Proof Type <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="customerAddressProof" value="Aadhaar" />
+                <span class="radio-label">
+                  <span class="radio-dot"></span>
+                  Aadhaar
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="customerAddressProof" value="Voter ID" />
+                <span class="radio-label">
+                  <span class="radio-dot"></span>
+                  Voter ID
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="customerAddressProof" value="Driving License" />
+                <span class="radio-label">
+                  <span class="radio-dot"></span>
+                  DL
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="field-group col-8" id="fg-customerAddress">
+            <label for="customerAddress">Address</label>
+            <textarea id="customerAddress" name="customerAddress"
+              placeholder="House No., Street, Area, City, State" rows="2"></textarea>
+          </div>
+
+          <!-- Pin Code -->
+          <div class="field-group col-4" id="fg-customerPinCode">
+            <label for="customerPinCode">Pin Code <span class="req">*</span></label>
+            <input type="text" id="customerPinCode" name="customerPinCode"
+              placeholder="6-digit pin" maxlength="6" inputmode="numeric" />
+            <span class="field-error" id="err-customerPinCode"></span>
+          </div>
+
+          <!-- Landmark -->
+          <div class="field-group col-8" id="fg-customerLandmark">
+            <label for="customerLandmark">Landmark</label>
+            <input type="text" id="customerLandmark" name="customerLandmark"
+              placeholder="Near landmark / locality" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Guarantor Details ─────────────────────────────── -->
+      <section class="form-section" data-section="guarantor">
+        <div class="section-header">
+          <div class="section-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="section-title">Guarantor Details</h2>
+            <p class="section-desc">Guarantor / reference person information</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field-group col-6" id="fg-guarantorName">
+            <label for="guarantorName">Guarantor Name</label>
+            <input type="text" id="guarantorName" name="guarantorName"
+              placeholder="Guarantor's full name" />
+          </div>
+
+          <div class="field-group col-6" id="fg-guarantorPhone">
+            <label for="guarantorPhone">Phone Number</label>
+            <div class="input-prefix">
+              <span class="prefix">+91</span>
+              <input type="tel" id="guarantorPhone" name="guarantorPhone"
+                placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" />
+            </div>
+          </div>
+
+          <div class="field-group col-4" id="fg-guarantorAddressProof">
+            <label>Address Proof Type</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="guarantorAddressProof" value="Aadhaar" />
+                <span class="radio-label"><span class="radio-dot"></span>Aadhaar</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="guarantorAddressProof" value="Voter ID" />
+                <span class="radio-label"><span class="radio-dot"></span>Voter ID</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="guarantorAddressProof" value="Driving License" />
+                <span class="radio-label"><span class="radio-dot"></span>DL</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group col-8">
+            <label for="guarantorAddress">Address</label>
+            <textarea id="guarantorAddress" name="guarantorAddress"
+              placeholder="House No., Street, Area, City, State" rows="2"></textarea>
+          </div>
+
+          <div class="field-group col-4">
+            <label for="guarantorPinCode">Pin Code</label>
+            <input type="text" id="guarantorPinCode" name="guarantorPinCode"
+              placeholder="6-digit pin" maxlength="6" inputmode="numeric" />
+          </div>
+
+          <div class="field-group col-8">
+            <label for="guarantorLandmark">Landmark</label>
+            <input type="text" id="guarantorLandmark" name="guarantorLandmark"
+              placeholder="Near landmark / locality" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Co-Borrower Details ───────────────────────────── -->
+      <section class="form-section" data-section="coborrower">
+        <div class="section-header">
+          <div class="section-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M6 20v-2a6 6 0 0 1 12 0v2"/>
+              <path d="M2 20v-1a4 4 0 0 1 4-4h1"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="section-title">Co-Borrower Details</h2>
+            <div class="section-note">
+              <span class="note-icon">ℹ</span>
+              Mandatory if customer age is below 23 years or customer is female.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field-group col-6">
+            <label for="coBorrowerName">Co-Borrower Name</label>
+            <input type="text" id="coBorrowerName" name="coBorrowerName"
+              placeholder="Co-borrower's full name" />
+          </div>
+
+          <div class="field-group col-6">
+            <label for="coBorrowerPhone">Phone Number</label>
+            <div class="input-prefix">
+              <span class="prefix">+91</span>
+              <input type="tel" id="coBorrowerPhone" name="coBorrowerPhone"
+                placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" />
+            </div>
+          </div>
+
+          <div class="field-group col-4">
+            <label>Address Proof Type</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="coBorrowerAddressProof" value="Aadhaar" />
+                <span class="radio-label"><span class="radio-dot"></span>Aadhaar</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="coBorrowerAddressProof" value="Voter ID" />
+                <span class="radio-label"><span class="radio-dot"></span>Voter ID</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="coBorrowerAddressProof" value="Driving License" />
+                <span class="radio-label"><span class="radio-dot"></span>DL</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group col-8">
+            <label for="coBorrowerAddress">Address</label>
+            <textarea id="coBorrowerAddress" name="coBorrowerAddress"
+              placeholder="House No., Street, Area, City, State" rows="2"></textarea>
+          </div>
+
+          <div class="field-group col-4">
+            <label for="coBorrowerPinCode">Pin Code</label>
+            <input type="text" id="coBorrowerPinCode" name="coBorrowerPinCode"
+              placeholder="6-digit pin" maxlength="6" inputmode="numeric" />
+          </div>
+
+          <div class="field-group col-8">
+            <label for="coBorrowerLandmark">Landmark</label>
+            <input type="text" id="coBorrowerLandmark" name="coBorrowerLandmark"
+              placeholder="Near landmark / locality" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Dealer & Vehicle Details ──────────────────────── -->
+      <div class="two-col-sections">
+
+        <!-- Dealer Details -->
+        <section class="form-section" data-section="dealer">
+          <div class="section-header">
+            <div class="section-icon orange">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="16"/>
+                <line x1="10" y1="14" x2="14" y2="14"/>
+              </svg>
+            </div>
+            <div>
+              <h2 class="section-title">Dealer Details</h2>
+              <p class="section-desc">Electric Scooter & E-Rikshaw dealer info</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-group col-12" id="fg-dealerName">
+              <label for="dealerName">Dealer Name <span class="req">*</span></label>
+              <input type="text" id="dealerName" name="dealerName" placeholder="Dealer company / person name" value="Faizan Enterprises" />
+              <span class="field-error" id="err-dealerName"></span>
+            </div>
+            <div class="field-group col-12" id="fg-dealerCity">
+              <label for="dealerCity">Dealer City <span class="req">*</span></label>
+              <input type="text" id="dealerCity" name="dealerCity" placeholder="City / location" value="Senthal (Bareilly)" />
+              <span class="field-error" id="err-dealerCity"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Vehicle Details -->
+        <section class="form-section" data-section="vehicle">
+          <div class="section-header">
+            <div class="section-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-2"/>
+                <circle cx="9" cy="17" r="2"/>
+                <path d="M11 17H16"/>
+              </svg>
+            </div>
+            <div>
+              <h2 class="section-title">Vehicle Details</h2>
+              <p class="section-desc">Electric Scooter & E-Rikshaw vehicle info</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-group col-12" id="fg-vehicleBrand">
+              <label for="vehicleBrand">Brand <span class="req">*</span></label>
+              <input type="text" id="vehicleBrand" name="vehicleBrand" placeholder="e.g., Lohia, Hero, Piaggio" />
+              <span class="field-error" id="err-vehicleBrand"></span>
+            </div>
+            <div class="field-group col-12" id="fg-vehicleModel">
+              <label for="vehicleModel">Model <span class="req">*</span></label>
+              <input type="text" id="vehicleModel" name="vehicleModel" placeholder="Vehicle model name" />
+              <span class="field-error" id="err-vehicleModel"></span>
+            </div>
+            <div class="field-group col-12" id="fg-vehiclePrice">
+              <label for="vehiclePrice">Vehicle Price (₹) <span class="req">*</span></label>
+              <div class="input-currency">
+                <span class="currency-symbol">₹</span>
+                <input type="number" id="vehiclePrice" name="vehiclePrice"
+                  placeholder="e.g., 120000" min="0" step="100" />
+              </div>
+              <span class="field-error" id="err-vehiclePrice"></span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ── SECTION: Finance Details ────────────────────────────────── -->
+      <section class="form-section" data-section="finance">
+        <div class="section-header">
+          <div class="section-icon indigo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="section-title">Finance Details</h2>
+            <p class="section-desc">Loan, EMI and payment structure</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- Loan Amount -->
+          <div class="field-group col-4" id="fg-loanAmount">
+            <label for="loanAmount">Loan Amount (₹) <span class="req">*</span></label>
+            <div class="input-currency">
+              <span class="currency-symbol">₹</span>
+              <input type="number" id="loanAmount" name="loanAmount"
+                placeholder="e.g., 100000" min="0" />
+            </div>
+            <span class="field-error" id="err-loanAmount"></span>
+          </div>
+
+          <!-- Down Payment -->
+          <div class="field-group col-4" id="fg-downPayment">
+            <label for="downPayment">Down Payment / DP (₹) <span class="req">*</span></label>
+            <div class="input-currency">
+              <span class="currency-symbol">₹</span>
+              <input type="number" id="downPayment" name="downPayment"
+                placeholder="e.g., 20000" min="0" />
+            </div>
+            <span class="field-error" id="err-downPayment"></span>
+          </div>
+
+          <!-- EMI -->
+          <div class="field-group col-4" id="fg-emi">
+            <label for="emi">EMI Amount (₹)</label>
+            <div class="input-currency">
+              <span class="currency-symbol">₹</span>
+              <input type="number" id="emi" name="emi"
+                placeholder="Monthly EMI" min="0" />
+            </div>
+            <span class="field-error" id="err-emi"></span>
+          </div>
+
+          <!-- Tenure -->
+          <div class="field-group col-4" id="fg-tenure">
+            <label for="tenure">Tenure (Months) <span class="req">*</span></label>
+            <input type="number" id="tenure" name="tenure"
+              placeholder="e.g., 24" min="1" max="84" />
+            <span class="field-error" id="err-tenure"></span>
+          </div>
+
+          <!-- Advance Interest -->
+          <div class="field-group col-4">
+            <label for="advanceInterest">Advance Interest (₹)</label>
+            <div class="input-currency">
+              <span class="currency-symbol">₹</span>
+              <input type="number" id="advanceInterest" name="advanceInterest"
+                placeholder="Optional" min="0" />
+            </div>
+          </div>
+
+          <!-- Advance EMI -->
+          <div class="field-group col-4">
+            <label for="advanceEMI">Advance EMI (₹)</label>
+            <div class="input-currency">
+              <span class="currency-symbol">₹</span>
+              <input type="number" id="advanceEMI" name="advanceEMI"
+                placeholder="Optional" min="0" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Battery Details ────────────────────────────────── -->
+      <section class="form-section battery-section" data-section="battery">
+        <div class="section-header">
+          <div class="section-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="6" width="18" height="12" rx="2" ry="2"/>
+              <line x1="23" y1="13" x2="23" y2="11"/>
+              <line x1="11" y1="6" x2="11" y2="18" stroke-dasharray="2,2"/>
+              <path d="M7 12 L10 9 L8 12 L11 12 L8 15 L10 12 Z"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="section-title">Battery Details</h2>
+            <p class="section-desc">Electric Scooter & E-Rikshaw battery specification</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- Battery Type -->
+          <div class="field-group col-6">
+            <label>Battery Type <span class="req">*</span></label>
+            <div class="toggle-group">
+              <label class="toggle-card" id="togLithium">
+                <input type="radio" name="batteryType" value="Lithium" id="battTypeL" />
+                <div class="toggle-inner">
+                  <span class="toggle-icon">⚡</span>
+                  <span class="toggle-name">Lithium</span>
+                  <span class="toggle-desc">Long life, lightweight</span>
+                </div>
+              </label>
+              <label class="toggle-card" id="togLeadAcid">
+                <input type="radio" name="batteryType" value="Lead Acid" id="battTypeLA" />
+                <div class="toggle-inner">
+                  <span class="toggle-icon">🔋</span>
+                  <span class="toggle-name">Lead Acid</span>
+                  <span class="toggle-desc">Standard, economical</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Battery Voltage -->
+          <div class="field-group col-6" id="fg-batteryVoltage">
+            <label for="batteryVoltage">Battery Voltage <span class="req">*</span></label>
+            <div class="select-wrapper">
+              <select id="batteryVoltage" name="batteryVoltage">
+                <option value="">— Select Voltage —</option>
+                <option value="48V">48V</option>
+                <option value="60V">60V</option>
+                <option value="72V">72V</option>
+                <option value="96V">96V</option>
+              </select>
+            </div>
+            <span class="field-error" id="err-batteryVoltage"></span>
+          </div>
+
+          <!-- Battery Brand -->
+          <div class="field-group col-6">
+            <label for="batteryBrand">Battery Brand</label>
+            <input type="text" id="batteryBrand" name="batteryBrand"
+              placeholder="e.g., Amaron, Exide, Okaya" />
+          </div>
+
+          <!-- Battery Serial Number -->
+          <div class="field-group col-6">
+            <label for="batterySerial">Battery Serial Number</label>
+            <input type="text" id="batterySerial" name="batterySerial"
+              placeholder="Serial / chassis number" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Upload Documents ───────────────────────────────── -->
+      <section class="form-section upload-section" data-section="documents">
+        <div class="section-header">
+          <div class="section-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="section-title">Upload Documents</h2>
+            <p class="section-desc">JPG, PNG or PDF · Max 10 MB per file · Drag & drop or click to upload</p>
+          </div>
+        </div>
+
+        <!-- ══ CUSTOMER DOCUMENTS ══ -->
+        <div class="upload-group">
+          <div class="upload-group-title">
+            Customer Documents
+            <span class="upload-group-badge badge-required">Required</span>
+          </div>
+
+          <!-- Aadhaar -->
+          <div class="doc-subsection">
+            <div class="doc-subsection-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              Aadhaar Card
+            </div>
+            <div class="upload-grid">
+              <!-- Front -->
+              <div class="upload-field" id="uf-custAadhaarFront">
+                <span class="upload-label">
+                  Aadhaar Front <span class="req">*</span>
+                </span>
+                <div class="drop-zone" id="dz-custAadhaarFront" data-key="custAadhaarFront" data-required="true">
+                  <input type="file" id="file-custAadhaarFront" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle">
+                    <div class="dz-idle-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                    </div>
+                    <span class="dz-idle-text">Drop or Click</span>
+                    <span class="dz-idle-sub">JPG · PNG · PDF</span>
+                  </div>
+                  <div class="dz-preview">
+                    <img class="dz-img-preview" src="" alt="preview" />
+                    <div class="dz-pdf-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h6M9 11h6M9 18h4"/></svg>
+                    </div>
+                    <span class="dz-filename"></span>
+                    <span class="dz-filesize"></span>
+                    <div class="dz-actions">
+                      <button type="button" class="dz-btn dz-btn-replace">Replace</button>
+                      <button type="button" class="dz-btn dz-btn-remove">Remove</button>
+                    </div>
+                  </div>
+                </div>
+                <span class="upload-error" id="uerr-custAadhaarFront"></span>
+              </div>
+              <!-- Back -->
+              <div class="upload-field">
+                <span class="upload-label">Aadhaar Back <em style="font-style:normal;opacity:.6;font-weight:400;">(Optional)</em></span>
+                <div class="drop-zone" id="dz-custAadhaarBack" data-key="custAadhaarBack">
+                  <input type="file" id="file-custAadhaarBack" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle">
+                    <div class="dz-idle-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                    </div>
+                    <span class="dz-idle-text">Drop or Click</span>
+                    <span class="dz-idle-sub">JPG · PNG · PDF</span>
+                  </div>
+                  <div class="dz-preview">
+                    <img class="dz-img-preview" src="" alt="preview" />
+                    <div class="dz-pdf-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <span class="dz-filename"></span>
+                    <span class="dz-filesize"></span>
+                    <div class="dz-actions">
+                      <button type="button" class="dz-btn dz-btn-replace">Replace</button>
+                      <button type="button" class="dz-btn dz-btn-remove">Remove</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAN -->
+          <div class="doc-subsection">
+            <div class="doc-subsection-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              PAN Card
+            </div>
+            <div class="upload-grid">
+              <div class="upload-field" id="uf-custPAN">
+                <span class="upload-label">PAN Card <span class="req">*</span></span>
+                <div class="drop-zone" id="dz-custPAN" data-key="custPAN" data-required="true">
+                  <input type="file" id="file-custPAN" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle">
+                    <div class="dz-idle-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                    </div>
+                    <span class="dz-idle-text">Drop or Click</span>
+                    <span class="dz-idle-sub">JPG · PNG · PDF</span>
+                  </div>
+                  <div class="dz-preview">
+                    <img class="dz-img-preview" src="" alt="preview" />
+                    <div class="dz-pdf-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <span class="dz-filename"></span>
+                    <span class="dz-filesize"></span>
+                    <div class="dz-actions">
+                      <button type="button" class="dz-btn dz-btn-replace">Replace</button>
+                      <button type="button" class="dz-btn dz-btn-remove">Remove</button>
+                    </div>
+                  </div>
+                </div>
+                <span class="upload-error" id="uerr-custPAN"></span>
+              </div>
+            </div>
+          </div>
+        </div><!-- /customer upload group -->
+
+        <!-- ══ GUARANTOR DOCUMENTS ══ -->
+        <div class="upload-group">
+          <div class="upload-group-title">
+            Guarantor Documents
+            <span class="upload-group-badge badge-optional">Optional</span>
+          </div>
+          <div class="doc-subsection">
+            <div class="doc-subsection-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              Aadhaar Card
+            </div>
+            <div class="upload-grid">
+              <div class="upload-field">
+                <span class="upload-label">Aadhaar Front</span>
+                <div class="drop-zone" id="dz-guarAadhaarFront" data-key="guarAadhaarFront">
+                  <input type="file" id="file-guarAadhaarFront" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle"><div class="dz-idle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div><span class="dz-idle-text">Drop or Click</span><span class="dz-idle-sub">JPG · PNG · PDF</span></div>
+                  <div class="dz-preview"><img class="dz-img-preview" src="" alt="" /><div class="dz-pdf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="dz-filename"></span><span class="dz-filesize"></span><div class="dz-actions"><button type="button" class="dz-btn dz-btn-replace">Replace</button><button type="button" class="dz-btn dz-btn-remove">Remove</button></div></div>
+                </div>
+              </div>
+              <div class="upload-field">
+                <span class="upload-label">Aadhaar Back</span>
+                <div class="drop-zone" id="dz-guarAadhaarBack" data-key="guarAadhaarBack">
+                  <input type="file" id="file-guarAadhaarBack" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle"><div class="dz-idle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div><span class="dz-idle-text">Drop or Click</span><span class="dz-idle-sub">JPG · PNG · PDF</span></div>
+                  <div class="dz-preview"><img class="dz-img-preview" src="" alt="" /><div class="dz-pdf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="dz-filename"></span><span class="dz-filesize"></span><div class="dz-actions"><button type="button" class="dz-btn dz-btn-replace">Replace</button><button type="button" class="dz-btn dz-btn-remove">Remove</button></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="doc-subsection">
+            <div class="doc-subsection-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              PAN Card
+            </div>
+            <div class="upload-grid">
+              <div class="upload-field">
+                <span class="upload-label">PAN Card</span>
+                <div class="drop-zone" id="dz-guarPAN" data-key="guarPAN">
+                  <input type="file" id="file-guarPAN" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle"><div class="dz-idle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div><span class="dz-idle-text">Drop or Click</span><span class="dz-idle-sub">JPG · PNG · PDF</span></div>
+                  <div class="dz-preview"><img class="dz-img-preview" src="" alt="" /><div class="dz-pdf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="dz-filename"></span><span class="dz-filesize"></span><div class="dz-actions"><button type="button" class="dz-btn dz-btn-replace">Replace</button><button type="button" class="dz-btn dz-btn-remove">Remove</button></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /guarantor upload group -->
+
+        <!-- ══ CO-BORROWER DOCUMENTS ══ -->
+        <div class="upload-group">
+          <div class="upload-group-title">
+            Co-Borrower Documents
+            <span class="upload-group-badge badge-optional">Optional</span>
+          </div>
+          <div class="doc-subsection">
+            <div class="doc-subsection-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              Aadhaar Card
+            </div>
+            <div class="upload-grid">
+              <div class="upload-field">
+                <span class="upload-label">Aadhaar Front</span>
+                <div class="drop-zone" id="dz-coAadhaarFront" data-key="coAadhaarFront">
+                  <input type="file" id="file-coAadhaarFront" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle"><div class="dz-idle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div><span class="dz-idle-text">Drop or Click</span><span class="dz-idle-sub">JPG · PNG · PDF</span></div>
+                  <div class="dz-preview"><img class="dz-img-preview" src="" alt="" /><div class="dz-pdf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="dz-filename"></span><span class="dz-filesize"></span><div class="dz-actions"><button type="button" class="dz-btn dz-btn-replace">Replace</button><button type="button" class="dz-btn dz-btn-remove">Remove</button></div></div>
+                </div>
+              </div>
+              <div class="upload-field">
+                <span class="upload-label">Aadhaar Back</span>
+                <div class="drop-zone" id="dz-coAadhaarBack" data-key="coAadhaarBack">
+                  <input type="file" id="file-coAadhaarBack" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle"><div class="dz-idle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div><span class="dz-idle-text">Drop or Click</span><span class="dz-idle-sub">JPG · PNG · PDF</span></div>
+                  <div class="dz-preview"><img class="dz-img-preview" src="" alt="" /><div class="dz-pdf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="dz-filename"></span><span class="dz-filesize"></span><div class="dz-actions"><button type="button" class="dz-btn dz-btn-replace">Replace</button><button type="button" class="dz-btn dz-btn-remove">Remove</button></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="doc-subsection">
+            <div class="doc-subsection-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              PAN Card
+            </div>
+            <div class="upload-grid">
+              <div class="upload-field">
+                <span class="upload-label">PAN Card</span>
+                <div class="drop-zone" id="dz-coPAN" data-key="coPAN">
+                  <input type="file" id="file-coPAN" accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="dz-idle"><div class="dz-idle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div><span class="dz-idle-text">Drop or Click</span><span class="dz-idle-sub">JPG · PNG · PDF</span></div>
+                  <div class="dz-preview"><img class="dz-img-preview" src="" alt="" /><div class="dz-pdf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="dz-filename"></span><span class="dz-filesize"></span><div class="dz-actions"><button type="button" class="dz-btn dz-btn-replace">Replace</button><button type="button" class="dz-btn dz-btn-remove">Remove</button></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /co-borrower upload group -->
+
+      </section><!-- /upload-section -->
+
+      <!-- ── ACTION BUTTONS ──────────────────────────────────────────── -->
+      <div class="form-actions">
+        <button type="button" id="resetBtn" class="btn btn-reset">
+          <span class="btn-icon">↺</span>
+          Reset Form
+        </button>
+        <button type="submit" id="generateBtn" class="btn btn-primary">
+          <span class="btn-icon btn-spinner" id="spinner">
+            <svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+          </span>
+          <span class="btn-text" id="btnText">Generate PDF</span>
+        </button>
+      </div>
+
+    </form>
+  </main>
+
+  <!-- ══════════════ SUCCESS OVERLAY ══════════════ -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <div class="success-icon-wrap">
+        <div class="success-ring"></div>
+        <div class="checkmark">
+          <svg viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="25" stroke="url(#successGrad)" stroke-width="2"/>
+            <path d="M14.1 27.2l7.1 7.2 16.7-16.8" stroke="url(#successGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="successGrad" x1="0" y1="0" x2="52" y2="52">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <h3 class="success-title">PDF Generated Successfully!</h3>
+      <p class="success-msg" id="successMsg">Your PDF is ready.</p>
+      <div class="success-actions">
+        <button class="btn btn-download" id="downloadAgainBtn">
+          <span>⬇</span> Download Again
+        </button>
+        <button class="btn btn-print" id="printBtn">
+          <span>🖨</span> Print PDF
+        </button>
+        <button class="btn btn-outline" id="newFormBtn">
+          <span>+</span> New Form
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOAST NOTIFICATION ══════════════ -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon">✓</span>
+    <span id="toastMsg">Message</span>
+  </div>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="app-footer">
+    <p>© 2026 Akasa Finance · Electric Scooter & E-Rikshaw Loan Management · PDF Generator v1.0</p>
+    <p class="footer-credit">
+      Made with <span class="heart">❤️</span> by
+      <a href="https://www.instagram.com/faiizanaly/" target="_blank" rel="noopener noreferrer" class="footer-link">
+        Faizan Ali
+        <svg class="insta-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

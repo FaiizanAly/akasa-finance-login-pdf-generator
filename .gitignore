@@ -1,0 +1,16 @@
+node_modules/
+generated/**/*
+!generated/.gitkeep
+
+*.log
+.env
+test_output.pdf
+pdf_content.txt
+pdf_streams.txt
+main_stream.txt
+main_page.txt
+pdf_analysis.json
+uncompressed_stream.txt
+analyze_pdf.js
+uploads/**/*
+!uploads/**/.gitkeep
