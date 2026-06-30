@@ -1,9 +1,9 @@
-const CACHE_NAME = 'erikshaw-finance-v1';
+const CACHE_NAME = 'erikshaw-finance-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/style.css',
-  '/script.js',
+  '/style.css?v=2',
+  '/script.js?v=2',
   '/icon-192.png',
   '/icon-512.png',
   '/manifest.json'
